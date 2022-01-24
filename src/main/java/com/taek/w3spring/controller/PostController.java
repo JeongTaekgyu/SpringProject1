@@ -5,12 +5,9 @@ import com.taek.w3spring.domain.PostRepository;
 import com.taek.w3spring.domain.PostRequestDto;
 import com.taek.w3spring.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,17 +22,6 @@ public class PostController {
     public List<Post> readPost(){
         return postRepository.findAllByOrderByModifiedAtDesc();
     }
-
-    //@GetMapping("views/posting")
-
-    // RestController에서는 안된다
-    /*@GetMapping("/test1")
-    public String helloTest(Model model){
-        System.out.println("~~~ 오긴와?");
-        model.addAttribute("data","제발 되라~~");
-        System.out.println("~~~ 오긴와?222");
-        return "hello";
-    }*/
 
     @GetMapping("/test1")
     public ModelAndView helloTest(){
@@ -72,20 +58,11 @@ public class PostController {
 
         System.out.println("~~~ : "+username1 + ",  "+title1+ ", "+content1);
         System.out.println("~~~cr : "+cr+ ", ~~~" +md);
-    //        mv.addObject("name",username1);
-    //        mv.addObject("title",title1);
-    //        mv.addObject("content",content1);
-    //        mv.setViewName("hello");
-        //return "redirect:/test1";
-        //return mv;
-
     }
 
     @GetMapping("/views/posting/{id}")
     public ModelAndView viewPost(@PathVariable Long id){
         ModelAndView mv = new ModelAndView();
-        System.out.println("~~~ 오긴 오나?");
-        String name = "정택규";
 
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("존재x")

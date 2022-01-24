@@ -29,14 +29,11 @@
 
         .section{
             margin: auto;
-            border: solid black 2px;
+            /*border: solid black 2px;*/
             width: 1000px;
-            height: 600px;
+            height: 100%;
         }
 
-        .footer{
-            border: solid black 2px;
-        }
     </style>
 
     <script>
@@ -79,21 +76,30 @@
                         let username = postinfo['username'];
                         let title = postinfo['title'];
                         //let content = postinfo['content'];
-                        let time = postinfo['modifiedAt'];
-                        let date = new Date(time);
-                        addHTML(i+1, id, username, title, date);
+
+                        // 시간 표시하기
+                        let pre_time = postinfo['modifiedAt'];
+                        let time = new Date(pre_time);
+                        let year = time.getFullYear();
+                        let month= time.getMonth();
+                        let date = time.getDate();
+                        let hour = time.getHours();
+                        let min = time.getMinutes();
+                        let realTime = `${year}년 ${month+1}월 ${date}일 ${hour < 10 ? `0${hour}`: hour} : ${min < 10 ? `0${min}` : min}`;
+                        addHTML(i+1, id, username, title, realTime);
                     }
                 }
             });
         }
 
-        function addHTML(cnt, id, username, title, date){
+        function addHTML(cnt, id, username, title, realTime){
+
             // 1. HTML 태그를 만든다.
             let tempHtml = `<tr style="cursor:pointer" onclick="viewPost(${id})">
                                 <th scope="row">${cnt}</th>
                                 <td>${title}</td>
                                 <td>${username}</td>
-                                <td>${date.getFullYear()+'년 '+ date.getMonth() + 1+'월 '+date.getDate()+' '+ date.getHours()+':' +date.getMinutes()}</td>
+                                <td>${realTime}</td>
                             </tr>`;
             $('.tbody-class').append(tempHtml);
         }
@@ -107,7 +113,7 @@
 
     <section class="section">
         <div>
-            <button class="btn btn-primary" type="submit" style="margin: auto; display: block;"
+            <button class="btn btn-primary" type="submit" style="margin: 20px auto 20px auto; display: block;"
                     onclick="writePost()">글쓰기</button>
         </div>
         <div style="height: 500px">
@@ -121,20 +127,17 @@
                 </tr>
                 </thead>
                 <tbody class="tbody-class">
-                    <tr style="border: red solid 2px; cursor:pointer" onclick="viewPost()">
+                    <!--<tr style="border: red solid 2px; cursor:pointer" onclick="viewPost()">
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
 
     </section>
 
-    <footer class="footer">
-        <div> 풋터입니다.</div>
-    </footer>
 </body>
 </html>
