@@ -21,10 +21,12 @@ public class PostController {
     private final PostService postService;
     private final PostRepository postRepository;
 
-//    @GetMapping("/views/postInfo'")
-//    public List<Post> readPost(){
-//        return postRepository.findAllByOrderByModifiedAtDesc();
-//    }
+    @GetMapping("/views/postInfo")
+    public List<Post> readPost(){
+        return postRepository.findAllByOrderByModifiedAtDesc();
+    }
+
+    //@GetMapping("views/posting")
 
     // RestController에서는 안된다
     /*@GetMapping("/test1")
@@ -79,12 +81,20 @@ public class PostController {
 
     }
 
-    @GetMapping("/views/Post")
-    public ModelAndView viewPost(){
+    @GetMapping("/views/posting/{id}")
+    public ModelAndView viewPost(@PathVariable Long id){
         ModelAndView mv = new ModelAndView();
+        System.out.println("~~~ 오긴 오나?");
         String name = "정택규";
-        mv.addObject("name",name);
+
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("존재x")
+        );
+
+        mv.addObject("id",id);
+        mv.addObject("post",post);
         mv.setViewName("viewPost");
+        //return "viewPost";
         return mv;
     }
 

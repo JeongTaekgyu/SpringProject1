@@ -40,29 +40,63 @@
     </style>
 
     <script>
-        /*$(document).ready(function () {
+        $(document).ready(function () {
             // HTML 문서를 로드할 때마다 실행합니다.
-            getPostInfo();
-        })*/
+            getPostInfos();
+        })
 
         function writePost(){
             window.location.href = "/views/writePost";
         }
 
-        function viewPost(){
-            window.location.href = "/views/Post";
+        function viewPost(id){
+            //alert('헬로 오고');
+            window.location.href = `/views/posting/${id}`;
+            //alert(id + ", ");
+
+            /*let data = {'title': title};
+            $.ajax({
+                type: 'GET',
+                url: `/views/posting/${id}`,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log('~~~ 알랏 : ',response);
+                }
+            });*/
+
         }
 
-        /*function getPostInfo(){
+        function getPostInfos(){
             $.ajax({
                 type: 'GET',
                 url: '/views/postInfo',
                 success: function (response) {
-                    alert('성공이다 : ',response);
-                    console.log('~~~', response);
+                    console.log('zz : ',response);
+                    for(let i = 0; i < response.length; i++){
+                        let postinfo = response[i];
+                        let id = postinfo['id'];
+                        let username = postinfo['username'];
+                        let title = postinfo['title'];
+                        //let content = postinfo['content'];
+                        let time = postinfo['modifiedAt'];
+                        let date = new Date(time);
+                        addHTML(i+1, id, username, title, date);
+                    }
                 }
             });
-        }*/
+        }
+
+        function addHTML(cnt, id, username, title, date){
+            // 1. HTML 태그를 만든다.
+            let tempHtml = `<tr style="cursor:pointer" onclick="viewPost(${id})">
+                                <th scope="row">${cnt}</th>
+                                <td>${title}</td>
+                                <td>${username}</td>
+                                <td>${date.getFullYear()+'년 '+ date.getMonth() + 1+'월 '+date.getDate()+' '+ date.getHours()+':' +date.getMinutes()}</td>
+                            </tr>`;
+            $('.tbody-class').append(tempHtml);
+        }
     </script>
 
 </head>
@@ -72,6 +106,10 @@
     </header>
 
     <section class="section">
+        <div>
+            <button class="btn btn-primary" type="submit" style="margin: auto; display: block;"
+                    onclick="writePost()">글쓰기</button>
+        </div>
         <div style="height: 500px">
             <table class="table">
                 <thead class="thead-light">
@@ -82,26 +120,17 @@
                     <th scope="col">시간</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr style="border: red solid 2px; cursor:pointer" onclick="viewPost()">
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
+                <tbody class="tbody-class">
+                    <tr style="border: red solid 2px; cursor:pointer" onclick="viewPost()">
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <div>
-            <button class="btn btn-primary" type="submit" style="margin: auto; display: block;"
-            onclick="writePost()">글쓰기</button>
-        </div>
+
     </section>
 
     <footer class="footer">
