@@ -40,6 +40,11 @@
     </style>
 
     <script>
+        /*$(document).ready(function () {
+            // HTML 문서를 로드할 때마다 실행합니다.
+            getPostInfo();
+        })*/
+
         function writePost(){
             window.location.href = "/views/writePost";
         }
@@ -47,6 +52,17 @@
         function viewPost(){
             window.location.href = "/views/Post";
         }
+
+        /*function getPostInfo(){
+            $.ajax({
+                type: 'GET',
+                url: '/views/postInfo',
+                success: function (response) {
+                    alert('성공이다 : ',response);
+                    console.log('~~~', response);
+                }
+            });
+        }*/
     </script>
 
 </head>

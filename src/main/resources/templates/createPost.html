@@ -59,7 +59,8 @@
                 return;
             }
 
-            let data = {'name':name, 'title':title, 'content':content};
+            let data = {'username':name, 'title':title, 'content':content};
+            console.log('name: ',name, ",   title : ",title, ",   content : ",content);
 
             $.ajax({
                 type: "POST",
@@ -71,7 +72,8 @@
                 // 이렇게 문자열로 바뀌어도 contentType에 json을 표시하면 json으로 번역하라는 말이다.
                 success: function (response) {
                     alert('메시지가 성공적으로 작성되었습니다.');
-                    window.location.reload();
+                    //window.location.reload();
+                    window.location.href = "/";
                 }
             });
         }
@@ -89,6 +91,20 @@
                 alert('내용을 입력해 주세요');
                 return false;
             }
+
+            if(name.trim().length > 30){
+                alert('이름이 30자를 초과 했습니다.');
+                return false;
+            }
+            else if(title.trim().length > 40){
+                alert('제목이 40자를 초과했습니다.');
+                return false;
+            }
+            else if(content.trim().length > 150){
+                alert('내용이 150자를 초과했습니다.');
+                return false;
+            }
+
             return true;
         }
     </script>
