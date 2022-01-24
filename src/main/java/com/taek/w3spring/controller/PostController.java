@@ -68,10 +68,9 @@ public class PostController {
                 () -> new NullPointerException("존재x")
         );
 
-        mv.addObject("id",id);
         mv.addObject("post",post);
+        mv.addObject("createAt",post.getCreatedAt());
         mv.setViewName("viewPost");
-        //return "viewPost";
         return mv;
     }
 

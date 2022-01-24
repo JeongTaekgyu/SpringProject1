@@ -68,8 +68,6 @@
 </head>
 <body>
     <h1> 뷰 포스트</h1>
-    <!--<p th:text="${id}"></p>
-    <p th:text="'이름 : '+ ${post}"></p>-->
 
     <header class="header">
         <div> 헤더입니다.</div>
@@ -95,6 +93,9 @@
                     <textarea class="form-control" id="contentText" rows="3"
                               style="height: 230px" th:text="*{content}" readonly></textarea>
                 </div>
+            </div>
+            <div>
+                <p th:text="${#temporals.format(createAt, 'yyyy -MM -dd &nbsp; HH : mm : ss')}"></p>
             </div>
         </form>
         <!--<div>

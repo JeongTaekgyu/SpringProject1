@@ -69,7 +69,6 @@
                 type: 'GET',
                 url: '/views/postInfo',
                 success: function (response) {
-                    console.log('zz : ',response);
                     for(let i = 0; i < response.length; i++){
                         let postinfo = response[i];
                         let id = postinfo['id'];
@@ -85,7 +84,8 @@
                         let date = time.getDate();
                         let hour = time.getHours();
                         let min = time.getMinutes();
-                        let realTime = `${year}년 ${month+1}월 ${date}일 ${hour < 10 ? `0${hour}`: hour} : ${min < 10 ? `0${min}` : min}`;
+                        let sec = time.getSeconds();
+                        let realTime = `${year}년 ${month+1}월 ${date}일 ${hour < 10 ? `0${hour}`: hour} : ${min < 10 ? `0${min}` : min} : ${sec < 10 ? `0${sec}` : sec}`;
                         addHTML(i+1, id, username, title, realTime);
                     }
                 }
