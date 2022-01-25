@@ -69,7 +69,7 @@ public class PostController {
         );
 
         mv.addObject("post",post);
-        mv.addObject("createAt",post.getCreatedAt());
+        mv.addObject("timeAt",post.getModifiedAt());
         mv.setViewName("viewPost");
         return mv;
     }

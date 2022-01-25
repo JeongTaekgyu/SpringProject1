@@ -92,7 +92,8 @@
                 data: JSON.stringify(data),
                 success: function (response) {
                     alert('게시글 변경에 성공하였습니다.');
-                    window.location.reload();
+                    //window.location.reload();
+                    window.location.href ="/";
                 }
             });
         }
@@ -127,25 +128,14 @@
             return true;
         }
 
-        /*$(document).ready(function () {
-            getPosting();
-        })
-
-        function getPosting(){
-            $.ajax({
-                type: 'GET',
-                url: '/views/postInfo',
-                success: function (response) {
-                    console.log('zz : ',response);
-                }
-            });
-        }*/
     </script>
 
 </head>
 <body>
 
     <header class="header">
+        <span style="cursor:pointer" onclick="window.location.href='/'">
+            메인 페이지</span>
     </header>
 
     <section class="section">
@@ -170,7 +160,7 @@
                 </div>
             </div>
             <div>
-                <p style="text-align: right" th:text="${#temporals.format(createAt, 'yyyy -MM -dd &nbsp; HH : mm : ss')}"></p>
+                <p style="text-align: right" th:text="${#temporals.format(timeAt, 'yyyy -MM -dd &nbsp; HH : mm : ss')}"></p>
             </div>
         </form>
         <div th:object="${post}">
