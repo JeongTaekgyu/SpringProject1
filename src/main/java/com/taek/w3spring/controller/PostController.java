@@ -74,10 +74,16 @@ public class PostController {
         return mv;
     }
 
+    @DeleteMapping("/api/delete/{id}")
+    public Long deleteMemo(@PathVariable Long id){
+        postRepository.deleteById(id);
+        return id;
+    }
 
-    /*@PutMapping("/api/memos/{id}")
+
+    @PutMapping("/api/update/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
         // 파라미터 안에는 받아올 데이터가 있다.
         return postService.update(id, requestDto);
-    }*/
+    }
 }

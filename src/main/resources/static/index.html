@@ -101,9 +101,21 @@
                                 <th scope="row">${cnt}</th>
                                 <td>${title}</td>
                                 <td>${username}</td>
-                                <td>${realTime}</td>
+                                <td style="width: 250px">${realTime}</td>
+                                <td style="width: 90px"><button class="btn btn-primary" onclick="deleteOne('${id}')">삭제</button></td>
                             </tr>`;
             $('.tbody-class').append(tempHtml);
+        }
+
+        function deleteOne(id){
+            $.ajax({
+                type: "DELETE",
+                url: `/api/delete/${id}`,    // ${data} 있을 때는 백틱으로 묶는다.
+                success: function (response) {
+                    alert('게시글 삭제에 성공하였습니다.');
+                    window.location.reload();
+                }
+            })
         }
     </script>
 
@@ -126,6 +138,7 @@
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">시간</th>
+                    <th scope="col">삭제</th>
                 </tr>
                 </thead>
                 <tbody class="tbody-class">
