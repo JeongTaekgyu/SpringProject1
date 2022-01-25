@@ -25,26 +25,24 @@
 
     <style>
         .header{
-            border: solid black 2px;
+            background-color : #e4f4f5;
+            height: 75px;
         }
 
         .section{
             margin: auto;
-            border: solid black 2px;
             width: 1200px;
             height: 600px;
         }
 
-        .footer{
-            border: solid black 2px;
+        .formClass{
+            margin: 30px auto 20px auto;
+            padding: 50px 20px 50px 60px;
+            border: #e4f4f5 solid 5px;
+            border-radius: 12px;
+            width: 900px;
         }
 
-        .formClass{
-            margin: 20px auto 20px auto;
-            /*display: block;*/
-            border: red solid 1px;
-            width: 750px;
-        }
     </style>
 
     <script>
@@ -67,10 +65,9 @@
 
 </head>
 <body>
-    <h1> 뷰 포스트</h1>
 
     <header class="header">
-        <div> 헤더입니다.</div>
+        <div></div>
     </header>
 
     <section class="section">
@@ -90,12 +87,12 @@
             <div class="form-group">
                 <label for="contentText">내용</label>
                 <div class="col-sm-11">
-                    <textarea class="form-control" id="contentText" rows="3"
-                              style="height: 230px" th:text="*{content}" readonly></textarea>
+                <textarea class="form-control" id="contentText" rows="3"
+                          style="height: 230px" th:text="*{content}" readonly></textarea>
                 </div>
             </div>
             <div>
-                <p th:text="${#temporals.format(createAt, 'yyyy -MM -dd &nbsp; HH : mm : ss')}"></p>
+                <p style="text-align: right" th:text="${#temporals.format(createAt, 'yyyy -MM -dd &nbsp; HH : mm : ss')}"></p>
             </div>
         </form>
         <!--<div>
@@ -104,8 +101,5 @@
         </div>-->
     </section>
 
-    <footer class="footer">
-        <div> 풋터입니다.</div>
-    </footer>
 </body>
 </html>
