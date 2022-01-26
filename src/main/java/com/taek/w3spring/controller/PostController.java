@@ -23,30 +23,15 @@ public class PostController {
         return postRepository.findAllByOrderByModifiedAtDesc();
     }
 
-    @GetMapping("/test1")
-    public ModelAndView helloTest(){
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("data","모델 앤 뷰입니다");
-        mv.setViewName("hello");
-        return mv;
-    }
-
     @GetMapping("/views/writePost")
     public ModelAndView viewCreatePost(){
         ModelAndView mv = new ModelAndView();
-
-        String test = "테스트요.";
-        String test2 = "두 번째 입니다.";
-        mv.addObject("one",test);
-        mv.addObject("two",test2);
         mv.setViewName("createPost");
         return mv;
     }
 
     @PostMapping("/create/writePost")
     public void createPost(@RequestBody PostRequestDto requestDto){
-        //ModelAndView mv = new ModelAndView();
-
         Post post = new Post(requestDto);
         postRepository.save(post);
 
@@ -64,6 +49,7 @@ public class PostController {
     public ModelAndView viewPost(@PathVariable Long id){
         ModelAndView mv = new ModelAndView();
 
+        // Post형에 Optional 형을 넣는데 되는데.. 근데 예외처리 안하면 형이 달라서 안된다.
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("존재x")
         );
@@ -79,7 +65,6 @@ public class PostController {
         postRepository.deleteById(id);
         return id;
     }
-
 
     @PutMapping("/api/update/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody PostRequestDto requestDto){

@@ -49,9 +49,7 @@
         }
 
         function viewPost(id){
-            //alert('헬로 오고');
             window.location.href = `/views/posting/${id}`;
-            //alert(id + ", ");
 
             /*let data = {'title': title};
             $.ajax({
@@ -63,7 +61,6 @@
                     console.log('~~~ 알랏 : ',response);
                 }
             });*/
-
         }
 
         function getPostInfos(){
@@ -81,6 +78,7 @@
                         // 시간 표시하기
                         let pre_time = postinfo['modifiedAt'];
                         let time = new Date(pre_time);
+                        //let time = timeDate.toString();
                         let year = time.getFullYear();
                         let month= time.getMonth();
                         let date = time.getDate();
@@ -141,12 +139,6 @@
                 </tr>
                 </thead>
                 <tbody class="tbody-class">
-                    <!--<tr style="border: red solid 2px; cursor:pointer" onclick="viewPost()">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>-->
                 </tbody>
             </table>
         </div>
