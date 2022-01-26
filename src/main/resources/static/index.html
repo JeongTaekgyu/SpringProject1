@@ -50,17 +50,6 @@
 
         function viewPost(id){
             window.location.href = `/views/posting/${id}`;
-
-            /*let data = {'title': title};
-            $.ajax({
-                type: 'GET',
-                url: `/views/posting/${id}`,
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success: function (response) {
-                    console.log('~~~ 알랏 : ',response);
-                }
-            });*/
         }
 
         function getPostInfos(){
@@ -78,7 +67,7 @@
                         // 시간 표시하기
                         let pre_time = postinfo['modifiedAt'];
                         let time = new Date(pre_time);
-                        //let time = timeDate.toString();
+
                         let year = time.getFullYear();
                         let month= time.getMonth();
                         let date = time.getDate();

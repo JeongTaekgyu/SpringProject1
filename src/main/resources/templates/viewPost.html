@@ -48,9 +48,7 @@
     <script>
 
         function showEdit(){
-            console.log('왜안돼');
             if( $('#editBtn').prop("readonly") != true){
-                console.log('readonly == false 라면')
                 $('#inputName').prop('readonly',false);
                 $('#inputTitle').prop('readonly',false);
                 $('#contentText').prop('readonly',false);
@@ -59,7 +57,6 @@
                 $('#editBtn').text('취소');
                 $('#editConfirmBtn').prop('hidden',false);
             } else{
-                console.log('else 인데 라면')
                 $('#inputName').prop('readonly',true);
                 $('#inputTitle').prop('readonly',true);
                 $('#contentText').prop('readonly',true);
@@ -71,8 +68,6 @@
         }
 
         function confirmEdit(id){
-            console.log('아아디 : ',id);
-
             let username = $('#inputName').val().trim();
             let title = $('#inputTitle').val().trim();
             let content = $('#contentText').val().trim();
@@ -134,8 +129,10 @@
 <body>
 
     <header class="header">
-        <span style="cursor:pointer" onclick="window.location.href='/'">
-            메인 페이지</span>
+        <div>
+            <span style="cursor:pointer; font-size: x-large; border:solid skyblue 3px; border-radius: 5px; padding: 10px;"
+                  onclick="window.location.href='/'">메인 페이지로</span>
+        </div>
     </header>
 
     <section class="section">

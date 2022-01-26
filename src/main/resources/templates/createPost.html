@@ -57,7 +57,6 @@
             }
 
             let data = {'username':name, 'title':title, 'content':content};
-            //console.log('name: ',name, ",   title : ",title, ",   content : ",content);
 
             $.ajax({
                 type: "POST",
@@ -110,8 +109,10 @@
 <body>
 
     <header class="header">
-        <span style="cursor:pointer" onclick="window.location.href='/'">
-            메인 페이지</span>
+        <div>
+            <span style="cursor:pointer; font-size: x-large; border:solid skyblue 3px; border-radius: 5px; padding: 10px;"
+                  onclick="window.location.href='/'">메인 페이지로</span>
+        </div>
     </header>
 
     <section class="section">

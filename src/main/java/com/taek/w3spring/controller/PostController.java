@@ -35,14 +35,8 @@ public class PostController {
         Post post = new Post(requestDto);
         postRepository.save(post);
 
-        String username1 = post.getUsername();
-        String title1 = post.getTitle();
-        String content1 = post.getContent();
-        LocalDateTime cr = post.getCreatedAt();
-        LocalDateTime md = post.getModifiedAt();
-
-        System.out.println("~~~ : "+username1 + ",  "+title1+ ", "+content1);
-        System.out.println("~~~cr : "+cr+ ", ~~~" +md);
+        //LocalDateTime cr = post.getCreatedAt();
+        //LocalDateTime md = post.getModifiedAt();
     }
 
     @GetMapping("/views/posting/{id}")
@@ -51,7 +45,7 @@ public class PostController {
 
         // Post형에 Optional 형을 넣는데 되는데.. 근데 예외처리 안하면 형이 달라서 안된다.
         Post post = postRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("존재x")
+                () -> new NullPointerException("id가 존재하지 않습니다.")
         );
 
         mv.addObject("post",post);
